@@ -1,4 +1,5 @@
 <template>
+<NavBar />
   <div class="lg:w-7/12 w-full h-96">
     <div class="h-full w-full" id="map" ref="map"></div>
     <form @submit="form.post('/googlemaps')">

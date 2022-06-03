@@ -1,4 +1,5 @@
 <template>
+<NavBar />
   <div class="max-w-screen-lg w-full mx-auto mt-12">
     <h1 class="text-2xl text-gray-700 pb-6">Blog</h1>
     <Disclosure class="mb-4" as="div" v-for="(post, index) in posts" :key="index" v-slot="{ open }">
