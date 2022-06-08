@@ -11,6 +11,7 @@
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo class="block h-9 w-auto" />
                                 </Link>
+                                
                             </div>
 
                             <!-- Navigation Links -->

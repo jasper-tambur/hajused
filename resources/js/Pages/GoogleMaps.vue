@@ -58,7 +58,7 @@ loader.load().then(() => {
     center: myLatLng,
   });
   for (const key in props.data) {
-    let markers = new google.maps.Marker({
+    let marker = new google.maps.Marker({
       position: {
         lat: props.data[key].latitude,
         lng: props.data[key].longitude,
