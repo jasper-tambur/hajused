@@ -25,7 +25,6 @@
                                             Total</h3>
                                     </div>
 
-
                                     <CartItem v-for="item in data" :key="item.id" :data="item" />
 
                                     <a href="/store" class="flex font-semibold text-indigo-600 text-sm mt-10">
