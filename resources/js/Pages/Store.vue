@@ -40,7 +40,7 @@ export default {
       console.log(dataForm);
       dataForm.post(route("add.cart"));
     },
-    // addQty: function(id){ 
+    // addQty: function(id){
     //     qtyList[id] = $refs.qty.value
     //     console.log(qtyList)
     // }

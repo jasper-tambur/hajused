@@ -48,6 +48,7 @@ Route::delete('/cart/{id}', [StoreController::class, 'destroy'])->name('delete.c
 
 Route::get('/stripeCart',[StoreController::class, 'checkoutData'])->name('get.stripeCart');
 
+
 Route::get('/success', [StoreController::class, 'success']);
 
 Route::delete('/googlemaps/{id}', [MarkerController::class, 'delete'])->name('marker.delete');

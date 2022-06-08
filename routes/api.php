@@ -3,6 +3,7 @@
 use App\Http\Controllers\WeatherApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::middleware('api')->get('/cars', [CarsController::class, 'index'])->name("cars");
+Route::middleware('api')->get('cars/add', [CarsController::class, 'addCar']);
+Route::middleware('api')->post('/cars', [CarsController::class, 'store'])->name("add.car");

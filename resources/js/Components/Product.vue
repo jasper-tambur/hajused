@@ -1,11 +1,4 @@
-<script setup>
-import { Head, useForm } from "@inertiajs/inertia-vue3";
-import axios from 'axios'
-import { inject, ref } from "vue";
-const route = inject("route");
-defineProps(["image", "title", "description", "category", "price", "data"])
-let qty = ref(1)
-</script> 
+
 <template>
     <div class="rounded overflow-hidden shadow-lg">
         <img class="w-full" :src="'https://epood.ta19heinsoo.itmajakas.ee/' + image" alt="">
@@ -25,17 +18,22 @@ let qty = ref(1)
             <span
                 class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Price:
                 {{ price }}</span>
-            <input type="number" :value="qty" @input="qty = $event.target.value" />
-            <button @click="$emit('addToCart', data, qty)"
+            <input type="number" v-model="qty"/>
+            <button @click="addToCart(data, qty)"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add to cart</button>
         </div>
     </div>
 </template>
-<script>
-export default {
-    emits: {
-        addToCart: function (data, qty) {
-            const dataForm = useForm({
+<script setup>
+import { Head, useForm } from "@inertiajs/inertia-vue3";
+import axios from 'axios'
+import { inject, ref } from "vue";
+const route = inject("route");
+defineProps(["image", "title", "description", "category", "price", "data"])
+let qty = ref(1)
+console.log(qty.value)
+function addToCart(data, qty){
+    const dataForm = useForm({
                 id: data.id,
                 image: data.image,
                 title: data.title,
@@ -46,15 +44,7 @@ export default {
             console.log(dataForm)
             console.log(qty)
             dataForm.post(route("add.cart"), {
-                onSuccess: () => qty.ref = ref(1)
+                onSuccess: () => qty = 1
             })
-        },
-    }
 }
 </script>
-
-
-
-
-
-
