@@ -5,7 +5,7 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 // Project name
-set('application', 'hajusrakendused');
+set('application', 'hajused');
 set('remote_user', 'virt83079'); //virt...
 set('http_user', 'virt83079');
 set('keep_releases', 2);
@@ -18,7 +18,7 @@ host('tak19tambur.itmajakas.ee')
     ->set('branch', 'dev');
 
 // Tasks
-set('repository', 'git@github.com:erkitambur/hajused.git');
+set('repository', 'git@github.com:jasper-tambur/hajused.git');
 //Restart opcache
 task('opcache:clear', function () {
     run('killall php80-cgi || true');
