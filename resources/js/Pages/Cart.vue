@@ -89,7 +89,7 @@ function redirect() {
     });
     console.log(items)
     stripe.redirectToCheckout({
-        successUrl: "https://hajus.tak19tambur.itmajakas.ee/success",
+        successUrl: "https://hajus.tak19tambur.itmajakas.ee/store",
         cancelUrl: "https://hajus.tak19tambur.itmajakas.ee/cart",
         lineItems: items,
         mode: "payment"

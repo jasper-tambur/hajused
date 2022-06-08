@@ -1,9 +1,9 @@
 <template>
     <nav class="bg-black border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-600">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="https://flowbite.com" class="flex items-center">
+            <a href="/dashboard" class="flex items-center">
                 <!-- <img src="/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> -->
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Navigation</span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Dashboard</span>
             </a>
             <button data-collapse-toggle="mobile-menu" type="button"
                 class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -23,11 +23,6 @@
             <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
                 <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                     <li>
-                        <a href="/dashboard"
-                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-
-                    </li>
-                    <li>
                         <a href="/store"
                             class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Store</a>
                     </li>
@@ -36,12 +31,12 @@
                             class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Blog</a>
                     </li>
                     <li>
-                        <a href="/weather"
-                            class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Weather</a>
+                        <a href="/googlemaps"
+                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Map</a>
                     </li>
                     <li>
-                        <a href="/googlemaps"
-                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Maps</a>
+                        <a href="/weather"
+                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Weather</a>
                     </li>
                     <a class="mt-1 text-white opacity-60 hover:opacity-80 focus:opacity-80 mr-4" href="/cart">
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart"
@@ -53,14 +48,38 @@
                         <span
                             class="text-white bg-red-700 absolute rounded-full text-xs -mt-6 ml-2 py-0 px-1.5">{{ qty }}</span>
                     </a>
-                    <li>
-                        <a href="/login"
-                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
-                    </li>
-                    <li>
-                        <a href="/register"
-                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
-                    </li>
+                    <div v-if="$page.props.auth.user " class="ml-3 relative">
+                                <Dropdown align="right" width="48">
+                                    <template #trigger>
+                                        <span class="inline-flex rounded-md">
+                                            <button type="button" class="inline-flex items-center px-3 py-0.5 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-black hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                {{ $page.props.auth.user.name }}
+
+                                                <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </span>
+                                    </template>
+
+                                    <template #content>
+                                        <DropdownLink :href="route('logout')" method="post" as="button">
+                                            Log Out
+                                        </DropdownLink>
+                                    </template>
+                                </Dropdown>
+                            </div>
+                            <div v-else class="flex flex-col md:flex-row md:space-x-5">
+                                <li >
+                                    <a :href="route('login')"
+                                    class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+                            </li>
+                                    <li >
+                                        <a :href="route('register')"
+                                            class="block py-2 pr-4 pl-3 text-gray-700 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+                                    </li>
+
+                            </div>
                 </ul>
             </div>
         </div>
@@ -71,16 +90,11 @@ export default {};
 </script>
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
+import { inject } from '@vue/runtime-core';
+
 // created = () => {
 //     this.$inertia.get(route())
 // }
+
+const route = inject("route")
 </script>
-
-
-
-
-
-
-
-
-

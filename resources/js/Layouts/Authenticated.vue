@@ -11,21 +11,35 @@
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo class="block h-9 w-auto" />
                                 </Link>
-                                
                             </div>
-
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
                                 <NavLink :href="route('blog.index')" :active="route().current('blog.index')">
-                                    Blog
+                                    Make a Blog
                                 </NavLink>
+                                
                             </div>
                         </div>
-
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <div class="flex">
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex sm:justify-end">
+                                <NavLink href="/store">
+                                    Store
+                                </NavLink>
+                                <NavLink href="/blog">
+                                    Blog
+                                </NavLink>
+                                <NavLink href="/googlemaps">
+                                    Map
+                                </NavLink>
+                                <NavLink href="/weather">
+                                    Weather
+                                </NavLink>
+                            </div>
+                            <div class="hidden sm:flex sm:items-center sm:ml-10">
+                            
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
                                 <Dropdown align="right" width="48">
@@ -59,6 +73,8 @@
                                 </svg>
                             </button>
                         </div>
+                        </div>
+                        
                     </div>
                 </div>
 
@@ -92,7 +108,6 @@
                     <slot name="header" />
                 </div>
             </header>
-
             <!-- Page Content -->
             <main>
                 <slot />

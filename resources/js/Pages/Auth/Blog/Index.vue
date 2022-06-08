@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-                            <Link class="bg-gray-800 text-white font-bold text-sm uppercase px-2 py-1 rounded" :href="route('blog.add')">Add new</Link>
+                            <Link class="bg-gray-800 text-white font-bold text-sm uppercase px-2 py-1 rounded" :href="route('blog.add')">create new blog</Link>
          <div class="flex justify-between py-2" v-for="(post, index) in posts" :key="index">
              <p>{{post.title}}</p>
             <div class="flex gap-4">
