@@ -43,15 +43,17 @@ Route::get('/dashboard', function () {
 Route::get('/store', [StoreController::class, 'index'])->name('store');
 Route::post('/cart', [StoreController::class, 'cartAdd'])->name('add.cart');
 Route::get('/cart', [StoreController::class, 'CartList'])->name('cart.list');
-Route::put('/cart/{id}', [StoreController::class, 'updateCart'])->name('update.cart');
+Route::put('/cart/{id}', [StoreController::class, 'cartUpdate'])->name('update.cart');
 Route::delete('/cart/{id}', [StoreController::class, 'destroy'])->name('delete.cart');
+
+Route::get('/stripeCart',[StoreController::class, 'checkoutData'])->name('get.stripeCart');
+
+Route::get('/success', [StoreController::class, 'success']);
 
 Route::delete('/googlemaps/{id}', [MarkerController::class, 'delete'])->name('marker.delete');
 Route::get('/googlemaps', [MarkerController::class, 'index']);
 Route::post('/googlemaps', [MarkerController::class, 'store']);
 Route::get('/googlemaps/marker/{id}', [MarkerController::class, 'show']);
 Route::post('/googlemaps/marker/{id}', [MarkerController::class, 'update'])->name("marker.edit");
-
-Route::get('/success', [StoreController::class, 'success']);
 
 require __DIR__.'/auth.php';
